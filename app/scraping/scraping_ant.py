@@ -2,11 +2,13 @@ import http.client
 from urllib.parse import quote
 from typing import Literal
 import json
+from app.config import settings
+
 
 class AntScraper:
     def __init__(self, scrap_url: str, extract_type: Literal['markdown', 'extended', 'general'] = "markdown"):
         self.http_connection = http.client.HTTPSConnection("api.scrapingant.com")
-        self.request_url = f"/v2/{extract_type}?url={quote(scrap_url, safe=':/?=&')}&x-api-key=491f2efec721457e970613dd0c3f9a63&proxy_country=US"
+        self.request_url = f"/v2/{extract_type}?url={quote(scrap_url, safe=':/?=&')}&x-api-key={settings.ANT_SCRAPER_KEY}&proxy_country=US"
         self.extract_type = extract_type
         self.scrap_url = scrap_url
     def get_content(self):
