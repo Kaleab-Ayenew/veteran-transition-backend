@@ -1,0 +1,3 @@
+DB_URL="postgresql://postgres:password@localhost:5432/veteran_app_db"
+OPENAI_API_KEY="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"
+NAVY_CAREER_MAIN_PAGE="https://www.navy.com/careers-benefits/careers"

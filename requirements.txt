@@ -1,0 +1,6 @@
+fastapi[standard]
+openai
+psycopg2-binary
+requests
+sqlmodel
+alembic
