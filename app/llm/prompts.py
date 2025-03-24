@@ -154,3 +154,5 @@ The response should be a JSON object structured as follows:
 
 # Notes
 - Consider the broad applicability of military skills in diverse civilian job markets."""
+
+RESUME_GENERATOR_PROMPT = """"""
