@@ -6,7 +6,8 @@ services:
       - "8000:8000" # Adjust the port as needed
     environment:
       - DB_URL=postgresql://postgres:password@service_db:5432/veteran_app_db
-      - OPENAI_API_KEY=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
+      - OPENAI_API_KEY=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
+
     depends_on:
       - service_db
 
