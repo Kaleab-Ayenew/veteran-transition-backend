@@ -16,7 +16,11 @@ class AntScraper:
         self.http_connection.request("GET", self.request_url)
         res = self.http_connection.getresponse()
         data = res.read().decode("utf-8")
-        if self.extract_type in ["markdown", "extended"]:
+        if self.extract_type == "markdown":
+            final_response = json.loads(data)
+            final_response = final_response.get("markdown")
+            return final_response
+        elif self.extract_type == "extended":
             final_response = json.loads(data)
             return final_response
         return data

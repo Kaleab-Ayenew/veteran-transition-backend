@@ -9,8 +9,8 @@ import shutil
 import subprocess
 import sys
 import tempfile
-
 import markdown
+from app.config import settings
 
 preamble = """\
 <html lang="en">
@@ -69,6 +69,8 @@ CHROME_GUESSES_LINUX = [
     )
 ]
 
+CSS_FILE_PATH = ""
+
 
 def guess_chrome_path() -> str:
     if sys.platform == "darwin":
@@ -104,10 +106,10 @@ def make_html(md: str, prefix: str = "resume") -> str:
     Insert <prefix>.css if it exists.
     """
     try:
-        with open(prefix + ".css") as cssfp:
+        with open(settings.CSS_FILE_PATH) as cssfp:
             css = cssfp.read()
     except FileNotFoundError:
-        print(prefix + ".css not found. Output will by unstyled.")
+        print(settings.CSS_FILE_PATH + ".css not found. Output will by unstyled.")
         css = ""
     return "".join(
         (
@@ -118,10 +120,11 @@ def make_html(md: str, prefix: str = "resume") -> str:
     )
 
 
-def write_pdf(html: str, prefix: str = "resume", chrome: str = "") -> None:
+def write_pdf(html: str, prefix: str = "resume", chrome: str = "") -> str:
     """
     Write html to prefix.pdf
     """
+    pdf_save_path = f"{settings.GENERATED_RESUME_PATH}/{prefix}"
     chrome = chrome or guess_chrome_path()
     html64 = base64.b64encode(html.encode("utf-8"))
     options = [
@@ -154,12 +157,13 @@ def write_pdf(html: str, prefix: str = "resume", chrome: str = "") -> None:
             [
                 chrome,
                 *options,
-                f"--print-to-pdf={prefix}.pdf",
+                f"--print-to-pdf={pdf_save_path}",
                 "data:text/html;base64," + html64.decode("utf-8"),
             ],
             check=True,
         )
         logging.info(f"Wrote {prefix}.pdf")
+        return pdf_save_path
     except subprocess.CalledProcessError as exc:
         if exc.returncode == -6:
             logging.warning(
@@ -187,11 +191,18 @@ if __name__ == "__main__":
         help="Do not write html output",
         action="store_true",
     )
+
     parser.add_argument(
         "--no-pdf",
         help="Do not write pdf output",
         action="store_true",
     )
+
+    parser.add_argument(
+        "--output",
+        help="Resume output path"
+    )
+
     parser.add_argument(
         "--chrome-path",
         help="Path to Chrome or Chromium executable",
@@ -202,21 +213,23 @@ if __name__ == "__main__":
 
     if args.quiet:
         logging.basicConfig(level=logging.WARN, format="%(message)s")
+        
     elif args.debug:
         logging.basicConfig(level=logging.DEBUG, format="%(message)s")
     else:
         logging.basicConfig(level=logging.INFO, format="%(message)s")
 
-    prefix, _ = os.path.splitext(os.path.abspath(args.file))
-
+    prefix = args.output
+    print("This is the prefix:", args.output)
     with open(args.file, encoding="utf-8") as mdfp:
         md = mdfp.read()
     html = make_html(md, prefix=prefix)
 
     if not args.no_html:
-        with open(prefix + ".html", "w", encoding="utf-8") as htmlfp:
+        with open(f"{settings.GENERATED_RESUME_PATH}/{prefix}.html", "w", encoding="utf-8") as htmlfp:
             htmlfp.write(html)
             logging.info(f"Wrote {htmlfp.name}")
 
     if not args.no_pdf:
         write_pdf(html, prefix=prefix, chrome=args.chrome_path)
+

@@ -15,7 +15,7 @@ if __name__ == "__main__":
     for pos in extracted_positions.get("military_positions"):
         print(f"[*] Retriving job details for {pos.get('title')}...")
         scraping_agent = AntScraper(scrap_url=f"https://navy.com{pos.get('details_url')}", extract_type="markdown")
-        markdown_content = scraping_agent.get_content().get("markdown")
+        markdown_content = scraping_agent.get_content()
         position_options = career_translator.get_career_translation(career_page_info=markdown_content)
         if position_options:
             career_translator.save_to_database(military_position_url=pos.get("details_url"))

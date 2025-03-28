@@ -155,4 +155,80 @@ The response should be a JSON object structured as follows:
 # Notes
 - Consider the broad applicability of military skills in diverse civilian job markets."""
 
-RESUME_GENERATOR_PROMPT = """"""
+RESUME_GENERATOR_SYSTEM_PROMPT = """Generate content for the 'experiences' and 'skills' sections of a resume based on the provided job descriptions given in csv format. Assume that the subject has experience performing all listed tasks, responsibilities, and required skills at the specified company.
+
+- Input: Job description containing tasks, responsibilities, skills, and more.
+- Output: JSON object following a pre-established schema representing the experiences and skills sections of a resume.
+
+# Steps
+
+1. **Analyze the Job Description**: Extract and understand job tasks, responsibilities, and skills from the description.
+2. **Formulate Experience Section**:
+   - Use the extracted data to create a detailed set of experiences.
+   - Include the position title, company name, start and end dates, a general summary of the company, and a list of key tasks and achievements.
+3. **Formulate Skills Section**:
+   - Identify skills mentioned and format them as a list.
+4. **Translate to JSON**: Structure the formulated content into JSON format based on the specified schema.
+
+# Output Format
+
+The output must be formatted as a JSON object adhering to the ExperienceSkillsCollection schema with the following sections:
+
+- "experiences": 
+  - Includes an array of ExperienceData objects, each with:
+    - "title": [Position Title]
+    - "company": [Company Name]
+    - "start_date": [Start Date in ISO format]
+    - "end_date": [End Date in ISO format]
+    - "general_description": [General Summary of the Company]
+    - "task_list": [List of Key Tasks and Achievements]
+  
+- "skills": 
+  - An object of SkillsData with:
+    - "skill_list": [Comma-separated list of skills]
+
+# Examples
+
+**Example Input:** (Partial input for brevity)
+```
+Position: Software Engineer
+Company: Innovative Solutions
+Start date: Jan 2015
+End date: Dec 2020
+[...]
+Tasks:
+- Develop and maintain web applications
+- Improve system efficiency and scalability
+[...]
+Skills:
+- Programming: Python, Java
+- Database Management: SQL
+```
+
+**Example Output:**
+```json
+{
+    "experiences": [
+        {
+            "title": "Software Engineer",
+            "company": "Innovative Solutions",
+            "start_date": "2015-01-01",
+            "end_date": "2020-12-31",
+            "general_description": "Innovative Solutions is a leading provider of tech solutions specializing in optimizing business operations through innovative software.",
+            "task_list": [
+                "Develop and maintain web applications",
+                "Improve system efficiency and scalability"
+            ]
+        }
+    ],
+    "skills": {
+        "skill_list": "Programming: Python, Java, Database Management: SQL"
+    }
+}
+```
+
+# Notes
+
+- Ensure summaries and task lists are concise but informative.
+- Maintain consistency with the formatting, particularly when listing skills and tasks.
+- Be mindful of the JSON schema's requirements for the proper hierarchy and field names."""

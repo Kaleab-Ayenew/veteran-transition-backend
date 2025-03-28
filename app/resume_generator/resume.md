@@ -1,60 +1,65 @@
-<!-- The (first) h1 will be used as the <title> of the HTML page -->
-# Richard Hendricks
+# John Doe
 
-<!-- The unordered list immediately after the h1 will be formatted on a single
-line. It is intended to be used for contact details -->
-- <richard.hendriks@mail.com>
-- (912) 555-4321
-- [richardhendricks.example.com](http://richardhendricks.example.com)
-- San Francisco, CA
+- <john.doe@email.com>
+- +12345678901
+- Los Angels, CA
 
-<!-- The paragraph after the h1 and ul and before the first h2 is optional. It
-is intended to be used for a short summary. -->
-CEO and Software Engineer with knowledge of applied information theory,
-including optimizing lossless compression schema of both the length-limited and
-adaptive variants.
 
 ## Experience
 
-<!-- You have to wrap the "left" and "right" half of these headings in spans by
-hand -->
-### <span>CEO/President, Pied Piper</span> <span>Dec 2013 -- Dec 2014</span>
+### <span>Aircraft Inspector, Aerospace Solutions Inc.</span> <span>2018-01-01 -- 2023-10-01</span>
 
-Pied Piper is a multi-platform technology based on a proprietary universal
-compression algorithm that has consistently fielded high Weisman Scores™ that
-are not merely competitive, but approach the theoretical limit of lossless
-compression.
+Aerospace Solutions Inc. is a leading provider of aerospace engineering and inspection services, ensuring the safety and compliance of aircraft and their components.
 
- - Build an algorithm for artist to detect if their music was violating
-   copyright infringement laws
- - Successfully won Techcrunch Disrupt
- - Optimized an algorithm that holds the current world record for Weisman Scores
-
-### <span>Teacher, CoderDojo</span> <span>July 2013 -- Dec 2013</span>
-
-Global movement of free coding clubs for young people.
-
- - Awarded 'Teacher of the Month'
+- Inspect work of aircraft mechanics performing maintenance, modification, or repair and overhaul of aircraft and aircraft mechanical systems to ensure adherence to standards and procedures.
+- Examine maintenance records and flight logs to determine if service and maintenance checks and overhauls were performed at prescribed intervals.
+- Inspect new, repaired, or modified aircraft to identify damage or defects and to assess airworthiness and conformance to standards, using checklists, hand tools, and test instruments.
+- Approve or deny issuance of certificates of airworthiness.
+- Prepare and maintain detailed repair, inspection, investigation, and certification records and reports.
+- Examine landing gear, tires, and exteriors of fuselage, wings, and engines for evidence of damage or corrosion and the need for repairs.
+- Recommend replacement, repair, or modification of aircraft equipment.
+- Start aircraft and observe gauges, meters, and other instruments to detect evidence of malfunctions.
+- Examine aircraft access plates and doors for security.
+- Investigate air accidents and complaints to determine causes.
+    
 
 ## Projects
 
-### <span>Miss Direction</span> <span>Aug 2016</span>
+### <span>Project 1</span> <span>Dec 2020</span>
 
-A mapping engine that misguides you:
+A one sentence summary of project number 1
 
-   - Won award at AIHacks 2016
-   - Built by all women team of newbie programmers
-   - Using modern technologies such as GoogleMaps, Chrome Extension and Javascript
+- Project detail 1
+- Project detail 2
+- Project detail 3
+    
 
 ## Education
 
-### <span>University of Oklahoma, BA Information Technology</span> <span>2011 -- 2014</span>
+### <span>UCLA, BS Computer Science</span>
 
-  - GPA 4.0
-  - DB1101 - Basic SQL
-  - CS2011 - Java Introduction
+- GPA: 3.9
+    
 
 ## Skills
 
- - Web development: HTML, CSS, JavaScript
- - Compression: Mpeg, MP4, GIF
+- Critical Thinking
+- Active Listening
+- Reading Comprehension
+- Speaking
+- Operations Monitoring
+- Quality Control Analysis
+- Writing
+- Complex Problem Solving
+- Monitoring
+- Judgment and Decision Making
+- Time Management
+- Troubleshooting
+- Active Learning
+- Operation and Control
+- Service Orientation
+- Social Perceptiveness
+- Systems Analysis
+- Coordination
+- Equipment Maintenance
+- Instructing

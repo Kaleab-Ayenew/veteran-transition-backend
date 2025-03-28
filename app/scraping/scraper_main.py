@@ -28,8 +28,7 @@ class MainPageScraper:
                     }
                 ```
         """
-        scraped_data = self.scraping_agent.get_content()
-        markdown_text = scraped_data.get("markdown")
+        markdown_text = self.scraping_agent.get_content()
         extracted_data = self.llm_client.send_message(input=[{"role":"user", "content": markdown_text}], response_format="json_object")
         extracted_data = json.loads(extracted_data)
         self.extracted_positions = extracted_data
