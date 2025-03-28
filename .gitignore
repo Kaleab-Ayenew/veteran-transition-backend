@@ -3,3 +3,4 @@ venv/
 __pycache__/
 generated_resumes/
 cache/
+docker-compose.yml
