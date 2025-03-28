@@ -73,7 +73,9 @@ CSS_FILE_PATH = ""
 
 
 def guess_chrome_path() -> str:
-    if sys.platform == "darwin":
+    if chrome_path := os.getenv("CHROME_PATH"):
+        return chrome_path
+    elif sys.platform == "darwin":
         guesses = CHROME_GUESSES_MACOS
     elif sys.platform == "win32":
         guesses = CHROME_GUESSES_WINDOWS
