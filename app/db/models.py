@@ -27,4 +27,26 @@ class CivilianPosition(SQLModel, table=True):
     military_position: str = Field(foreign_key="military_position.id")
 
     def get_civilian_options(self):
+        """
+        ```json
+        {
+        "civilian_jobs": [
+            {
+            "name": "<the-name-of-the-matching-position>",
+            "description": "<description of the matching position>",
+            "match_rank": 0
+            },
+            {
+            "name": "<the-name-of-the-next-matching-position>",
+            "description": "<description of the next matching position>",
+            "match_rank": 1
+            },
+            {
+            "name": "<the-name-of-the-least-matching-position>",
+            "description": "<description of the least matching position>",
+            "match_rank": 2
+            }
+        ]
+        }
+        ```"""
         return json.loads(self.civilian_options)

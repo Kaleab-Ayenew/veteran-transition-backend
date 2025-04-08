@@ -1,7 +1,14 @@
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from app.scraping.scraper_main import MainPageScraper
 from app.llm.translator import CareerTranslator
 from app.scraping.scraping_ant import AntScraper
+from app.config import settings
+from app.api.routers import generate_resume
 
+app = FastAPI()
+app.include_router(generate_resume.router)
+app.mount("/static", StaticFiles(directory=settings.GENERATED_RESUME_PATH), name="static")
 
 
 if __name__ == "__main__":
