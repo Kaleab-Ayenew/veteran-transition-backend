@@ -1,6 +1,7 @@
 from sqlmodel import Session, select
 from app.db.database import engine
-
+from app.db import models
+from typing import Union
 def create_row(model, data: dict):
     new_data = model(**data)
     with Session(engine) as session:

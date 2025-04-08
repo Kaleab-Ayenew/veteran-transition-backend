@@ -131,12 +131,13 @@ class ResumeGeneratorAgent:
         )
         return self.full_resume_data
     
-    def generate_pdf_resume(self):
+    def generate_pdf_resume(self) -> str:
         full_resume_data = self.get_full_resume_data()
         resume_markdown = self.generate_resume_markdown(full_resume_data)
         resume_html = resume_generator.make_html(resume_markdown)
         pdf_path = resume_generator.write_pdf(html=resume_html, prefix="_".join(self.personal_data.name.split(" ") + ["Resume"])+".pdf")
         print(f"[*] Resume pdf saved successfully.\nPath: {pdf_path}")
+        return pdf_path
 
 
 
