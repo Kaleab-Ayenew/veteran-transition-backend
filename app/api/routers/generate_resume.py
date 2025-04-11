@@ -9,12 +9,23 @@ import pathlib
 router = APIRouter(prefix="/resume")
 
 
-@router.post("/generate/{military_position_id}")
-def generate_resume(military_position_id: str, civilian_position_number: int | None = None):
-    military_position = db_utils.get_one_row(
-        models.MilitaryPosition,
-        (models.MilitaryPosition.id == military_position_id,)
-    )
+@router.post("/generate")
+def generate_resume(military_position_id: str | None = None, military_position_name: str | None = None, civilian_position_number: int | None = None):
+    if military_position_id:
+        military_position = db_utils.get_one_row(
+            models.MilitaryPosition,
+            (models.MilitaryPosition.id == military_position_id,)
+        )
+    elif military_position_name:
+        military_position = db_utils.get_one_row(
+            models.MilitaryPosition,
+            (models.MilitaryPosition.name == military_position_name,)
+        )
+    else:
+        raise HTTPException(
+            status_code=400,
+            detail="One of military_position_id or military_position_name is needed."
+        )
 
     # Check if the military position exists
     if not military_position:
@@ -62,6 +73,5 @@ def generate_resume(military_position_id: str, civilian_position_number: int | N
     filename = pathlib.Path(pdf_path).name
     download_path = f"{settings.BACKEND_BASE_URL}/static/{filename}"
     return {"resume_url": download_path}
-
 
 
