@@ -34,7 +34,7 @@ def generate_resume(military_position_id: str | None = None, military_position_n
     # Retrive the civilian position
     civilian_positions = db_utils.get_one_row(
         models.CivilianPosition,
-        (models.CivilianPosition.military_position == military_position_id,)
+        (models.CivilianPosition.military_position == military_position.id,)
     )
 
     if not civilian_positions:
